@@ -12,3 +12,15 @@ second_user = User.create(name: 'Lilly', photo: 'https://unsplash.com/photos/F_-
 first_post = Post.create(author: first_user, title: 'Hello', text: 'This is my first post')
 second_post = Post.create(author: second_user, title: 'Hello', text: 'This is my first post')
 third_post = Post.create(author: first_user, title: 'Hello', text: 'This is my second post')
+fourth_post = Post.create(author: first_user, title: 'Hello', text: 'This is my third post')
+fifth_post = Post.create(author: first_user, title: 'Hello', text: 'This is my fourth post')
+
+Comment.create(post: first_post, author: second_user, text: 'Hi Tom!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Mom!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Dad!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Dad!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Dad!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Mom!' )
+Comment.create(post: first_post, author: second_user, text: 'Hi Mom!' )
+
+Comment.create(post: third_post, author: second_user, text: 'Hi Dad!' )
