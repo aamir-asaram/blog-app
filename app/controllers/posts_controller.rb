@@ -14,4 +14,16 @@ class PostsController < ApplicationController
       format.html { render :new, locals: { post: post } }
     end
   end
+
+  def create
+    post = Post.new(params.require(:post).permit(:title, :text)
+    post.author = current_user
+    if post.save
+      flash[:success] = "Post created successfully"
+      redirect_to user_path(id: current_user.id)
+    else
+      flash.now[:error] = "Post failed to save"
+      render :new, locals: { post: post }
+    end
+  end
 end
