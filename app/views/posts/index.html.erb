@@ -9,7 +9,8 @@
         <span class="ml-2 mt-2">Likes: <%= post.likes.length %></span>
       </a>
     </li>
-    <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[96%]">
+    <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[95%]">
+
       <% unless post.comments.any? %>
         <h2>No Comments</h2>
       <% end %>
@@ -20,5 +21,10 @@
         </li>
       <% end %>
     </ul>
+  <% end %>
+  <% if @users[0] == current_user %>
+    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-red-300">
+      <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
+    </button>
   <% end %>
 </ul>
