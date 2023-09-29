@@ -21,7 +21,9 @@
       <% end %>
     </ul>
   <% end %>
-  <button>
-    <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
-  </button>
+  <% if @users[0] == current_user %>
+    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-red-300">
+      <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
+    </button>
+  <% end %>
 </ul>
