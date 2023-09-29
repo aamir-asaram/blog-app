@@ -21,4 +21,7 @@
       <% end %>
     </ul>
   <% end %>
+  <button>
+    <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
+  </button>
 </ul>
