@@ -1,15 +1,22 @@
 <%= render "users/user_header", users: @users%>
-<ul class="[&>*:nth-child(odd)]:bg-red-200 [&>*:nth-child(odd):hover]:border-red-400 [&>*:nth-child(even):hover]:border-teal-400 [&>*:nth-child(even)]:bg-teal-200">
+
+<% if @users[0] == current_user %>
+  <div class="cursor-pointer group ml-[85%] -mt-[5%] -mb-6 border-2 border-lime-500 bg-lime-400 w-max p-2 px-4 rounded-full hover:w-28 duration-500" onclick="window.location.href = '<%= new_user_post_path(id: @users[0].id) %>'">
+    <button class="cursor-pointer group-hover:hidden font-black">+</button>
+    <button class="cursor-pointer hidden group-hover:block font-semibold text-center">New Post</button>
+  </div>
+<% end %>
+
+<ul class="[&>*:nth-child(odd)]:bg-green-500 [&>*:nth-child(odd)]:text-violet-100 [&>*:nth-child(odd):hover]:border-green-700 [&>*:nth-child(even):hover]:border-blue-400 [&>*:nth-child(even)]:bg-blue-200">
   <% @posts.each do |post| %>
     <li class="hover:cursor-pointer rounded-xl m-8 p-8 border-4 border-transparent">
       <a href="<%= user_post_path(post.author_id, post.id) %>">
         <h2 class="font-semibold text-2xl"><%= post.title %></h2>
         <p class="text-xl"><%= post.text %></p>
-        <span class="ml-[85%] mt-2">Comments: <%= post.comments.length %></span>
-        <span class="ml-2 mt-2">Likes: <%= post.likes.length %></span>
+        <span class="ml-[85%] mt-2">Comments: <%= post.comments.length %> |</span>
+        <span class=" mt-2">Likes: <%= post.likes.length %></span>
       </a>
-    </li>
-    <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[95%]">
+      <ul class="rounded-xl py-8 w-[95%]">
 
       <% unless post.comments.any? %>
         <h2>No Comments</h2>
@@ -21,9 +28,10 @@
         </li>
       <% end %>
     </ul>
+    </li>
   <% end %>
   <% if @users[0] == current_user %>
-    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-red-300">
+    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-green-500">
       <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
     </button>
   <% end %>

@@ -4,7 +4,7 @@
   <h2 class="text-2xl ml-8 mb-2 underline">Bio</h2>
   <p class="text-xl ml-8"><%= @users[0].bio %></p>
 </div>
-<ul class="[&>*:nth-child(odd)]:bg-red-200 [&>*:nth-child(odd):hover]:border-red-400 [&>*:nth-child(even):hover]:border-teal-400 [&>*:nth-child(even)]:bg-teal-200">
+<ul class="[&>*:nth-child(odd)]:bg-green-500 [&>*:nth-child(odd):hover]:border-green-700 [&>*:nth-child(odd)]:text-violet-100 [&>*:nth-child(even):hover]:border-blue-400 [&>*:nth-child(even)]:bg-blue-200">
   <% @recent_posts.each do |post| %>
     <li class="hover:cursor-pointer rounded-xl m-8 p-8 border-4 border-transparent">
       <a href="<%= user_post_path(post.author_id, post.id) %>">
@@ -17,7 +17,7 @@
   <% end %>
 </ul>
 <% unless @users[0].posts.length <= 3 %>
-  <button class="w-max px-12 py-4 bg-teal-300 ml-[45%] hover:bg-teal-200 rounded-xl">
+  <button class="w-max px-12 py-4 bg-blue-300 ml-[45%] hover:bg-blue-200 rounded-xl">
     <a href="<%= user_posts_path(@users[0]) %>">See all posts</a>
   </button>
 <% end %>

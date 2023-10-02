@@ -1,4 +1,4 @@
-<ul class="[&>*:nth-child(odd)]:bg-red-200 [&>*:nth-child(odd):hover]:border-red-400 [&>*:nth-child(even):hover]:border-teal-400 [&>*:nth-child(even)]:bg-teal-200">
+<ul class="[&>*:nth-child(odd)]:text-violet-50 [&>*:nth-child(odd)]:bg-green-600 [&>*:nth-child(odd):hover]:border-green-800 [&>*:nth-child(even):hover]:border-teal-400 [&>*:nth-child(even)]:bg-teal-200">
   <% @posts.each do |post| %>
     <li class="hover:cursor-pointer rounded-xl m-8 p-8 border-4 border-transparent">
       <div>
@@ -8,7 +8,7 @@
         <span class="ml-2 mt-2">Likes: <%= post.likes.length %></span>
       </div>
     </li>
-    <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[96%]">
+    <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[95%]">
       <%= link_to '', new_user_post_comment_path(id: current_user, post_id: post) %>
       <% unless post.comments.any? %>
         <h2>No Comments</h2>
@@ -20,7 +20,7 @@
         </li>
       <% end %>
     </ul>
-    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-red-300">
+    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-green-800">
       <%= link_to 'New Comment', new_user_post_comment_path(id: current_user, post_id: post) %>
     </button>
     <button class="px-8 py-2 rounded-2xl border-4 border-transparent hover:border-blue-300">
