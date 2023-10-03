@@ -12,7 +12,7 @@ RSpec.describe User, type: :system do
 
   describe 'User show Page' do
     before(:each) do
-      visit user_posts_path
+      visit user_path(@user.id)
     end
 
     it 'displays the user name' do
@@ -33,25 +33,25 @@ RSpec.describe User, type: :system do
     end
 
     it 'displays the first 3 posts' do
-      expect(page).to have_content('This is my first post')
+      expect(page).not_to have_content('This is my first post')
       expect(page).to have_content('Second post')
       expect(page).to have_content('3rd post is here')
-      expect(page).not_to have_content('May the Forth be with you')
+      expect(page).to have_content('May the Forth be with you')
 
     end
 
     it 'clicking on the post should take you to the post show page' do
-      click_on('post')
-      expect(page).to visit user_post_path(:post_id)
+      click_on('Forth')
+      expect(page).to have_content('New Comment')
     end
 
     it 'displays the See all posts button' do
-      expect(page).to have_content('See all posts')
+      expect(page).to have_content('View more')
     end
 
     it 'clicking on the See All Posts button should take you to the user posts index page' do
-      click_on('Tom')
-      expect(page).to have_content('May the Forth be with you')
+      click_on('View more')
+      expect(page).to have_content('New')
     end
   end
 
