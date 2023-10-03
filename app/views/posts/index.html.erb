@@ -8,7 +8,7 @@
 <% end %>
 
 <ul class="[&>*:nth-child(odd)]:bg-green-500 [&>*:nth-child(odd)]:text-violet-100 [&>*:nth-child(odd):hover]:border-green-700 [&>*:nth-child(even):hover]:border-blue-400 [&>*:nth-child(even)]:bg-blue-200">
-  <% @posts.includes(:comments).each do |post| %>
+  <% @posts.each do |post| %>
     <li class="hover:cursor-pointer rounded-xl m-8 p-8 border-4 border-transparent">
       <a href="<%= user_post_path(post.author_id, post.id) %>">
         <h2 class="font-semibold text-2xl"><%= post.title %></h2>
