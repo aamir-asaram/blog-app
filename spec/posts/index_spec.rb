@@ -50,5 +50,17 @@ RSpec.describe Post, type: :system do
       click_on('My post 2.0')
       expect(page).to have_content('My post 2.0')
     end
+
+    it 'should not render pagination if there are less than 3 posts' do
+      expect(page).to_not have_content('Pagination')
+    end
+
+    it 'should render pagination if there are more than 3 posts' do
+      @post3 = Post.create(title: 'My post 3.0', text: 'This is my third post', author: @user)
+      @post4 = Post.create(title: 'My post 4.0', text: 'This is my fourth post', author: @user)
+      @post5 = Post.create(title: 'My post 5.0', text: 'This is my fifth post', author: @user)
+      visit user_posts_path(@user.id)
+      expect(page).to have_content('Pagination')
+    end
   end
 end
