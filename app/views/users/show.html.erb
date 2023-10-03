@@ -17,7 +17,5 @@
   <% end %>
 </ul>
 <% unless @users[0].posts.length <= 3 %>
-  <button class="w-max px-12 py-4 bg-blue-300 ml-[45%] hover:bg-blue-200 rounded-xl">
-    <a href="<%= user_posts_path(@users[0]) %>">See all posts</a>
-  </button>
+  <a href="<%= user_posts_path(@users[0]) %>" class="w-max px-12 py-4 bg-blue-300 ml-[45%] hover:bg-blue-200 rounded-xl">View more</a>
 <% end %>
