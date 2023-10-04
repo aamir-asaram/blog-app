@@ -2,7 +2,8 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
 
   protect_from_forgery with: :exception
-
+  
+  before_action :authenticate_user!
   before_action :update_allowed_parameters, if: :devise_controller?
 
   protected
