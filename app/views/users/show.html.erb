@@ -1,5 +1,12 @@
 <%= render partial: "user_header", users: @users%>
 
+<% if @users[0] == current_user %>
+  <div class="cursor-pointer group ml-[85%] -mt-[5%] -mb-6 border-2 border-lime-500 bg-lime-400 w-max p-2 px-4 rounded-full hover:w-28 duration-500" onclick="window.location.href = '<%= new_user_post_path(user_id: @users[0].id) %>'">
+    <button class="cursor-pointer group-hover:hidden font-black">+</button>
+    <button class="cursor-pointer hidden group-hover:block font-semibold text-center">New Post</button>
+  </div>
+<% end %>
+
 <div class="ml-8">
   <h2 class="text-2xl ml-8 mb-2 underline">Bio</h2>
   <p class="text-xl ml-8"><%= @users[0].bio %></p>
@@ -12,6 +19,9 @@
       <p class="text-xl"><%= post.text %></p>
       <span class="ml-[85%] mt-2">Comments: <%= post.comments.length %></span>
       <span class="ml-2 mt-2">Likes: <%= post.likes.length %></span>
+      <% if can? :destroy, post %>
+        <button>Delete</button>
+      <% end %>
       </a>
     </li>
   <% end %>
