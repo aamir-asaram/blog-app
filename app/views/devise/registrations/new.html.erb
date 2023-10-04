@@ -1,4 +1,4 @@
-<h2>Sign up</h2>
+<h2 class="text-3xl underline underline-offset-1 mb-8">Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
@@ -27,8 +27,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "Sign up", class: "rounded-full bg-lime-400 my-4 py-2 px-4"  %>
+    <%= render "devise/shared/links" %>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+

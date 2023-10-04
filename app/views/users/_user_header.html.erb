@@ -2,7 +2,11 @@
   <% @users.each do |user| %>
     <li class='rounded-xl m-6 '>
       <a href="<%= user_path(user.id)%>" class="p-8 flex flex-row">
-      <img src=<%= user.photo %> class="h-10 mr-4 outline-none"/>
+      <% if user.photo == nil %>
+        <div class  = "rounded-full w-11 flex items-center justify-center bg-lime-400"> - </div>
+      <% else %>
+        <img src="<%= user.photo %>" class="rounded-full w-24 h-24">
+      <% end %>
       <span class="mx-4 text-2xl"><%= user.name %></span>
       <span class="ml-[60%] mt-4 place-self-end">Number of Posts: <%= user.posts.length %></span>
       </a>

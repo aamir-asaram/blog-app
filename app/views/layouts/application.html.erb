@@ -12,12 +12,15 @@
   </head>
 
   <body class="w-[90%] flex flex-col content-center">
-    <main>
+    <main class="pt-8">
       <% if user_signed_in? %>
-        <%= button_to "Log out", destroy_user_session_path, method: :delete%>
+        <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "ml-[92%] py-2 px-4 bg-blue-200 rounded-full" %>
+      <% else %>
+        <% unless controller_name == 'registrations' || controller_name == 'sessions' %>
+          <%= link_to "Log in", new_user_session_path, class: "ml-[88%] py-2 px-4 bg-blue-200 rounded-full" %>
+          <%= link_to "Sign up", new_user_registration_path, class: "mt-4 py-2 px-4 bg-green-500 rounded-full" %>
+        <% end %>
       <% end %>
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
   </body>
