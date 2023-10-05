@@ -23,6 +23,8 @@ class PostsController < ApplicationController
 
   def destroy
     @post = Post.find(params[:post_id])
+    @post.comments.destroy_all
+    @post.likes.destroy_all
     @post.destroy
     redirect_to user_posts_path(current_user)
   end
