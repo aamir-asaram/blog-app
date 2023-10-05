@@ -1,7 +1,7 @@
 <%= render "users/user_header", users: @users%>
 
 <% if @users[0] == current_user %>
-  <div class="cursor-pointer group ml-[85%] -mt-[5%] -mb-6 border-2 border-lime-500 bg-lime-400 w-max p-2 px-4 rounded-full hover:w-28 duration-500" onclick="window.location.href = '<%= new_user_post_path(id: @users[0].id) %>'">
+  <div class="cursor-pointer group ml-[85%] -mt-[4%] -mb-6 border-2 border-lime-500 bg-lime-400 w-max p-2 px-4 rounded-full hover:w-28 duration-500" onclick="window.location.href = '<%= new_user_post_path(id: @users[0].id) %>'">
     <button class="cursor-pointer group-hover:hidden font-black">+</button>
     <button class="cursor-pointer hidden group-hover:block font-semibold text-center">New Post</button>
   </div>
@@ -16,6 +16,9 @@
         <span class="ml-[85%] mt-2">Comments: <%= post.comments.length %> |</span>
         <span class=" mt-2">Likes: <%= post.likes.length %></span>
       </a>
+      <% if can? :manage, post %>
+        <%= button_to "Delete", user_post_path(post.author_id, post.id), method: :delete, data: { confirm: "Are you sure you want to delete this post?" }, class: "text-red-600 font-semibold" %>
+      <% end %>
       <ul class="rounded-xl py-8 w-[95%]">
 
         <% unless post.comments.any? %>
@@ -29,11 +32,6 @@
         <% end %>
       </ul>
     </li>
-  <% end %>
-  <% if @users[0] == current_user %>
-    <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-green-500">
-      <%= link_to 'New Post', new_user_post_path(id: @users[0].id) %>
-    </button>
   <% end %>
   <% if @posts.length > 2 %>
     <div>

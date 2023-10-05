@@ -28,15 +28,16 @@ class Ability
     #
     # See the wiki for details:
     # https://github.com/CanCanCommunity/cancancan/blob/develop/docs/define_check_abilities.md
+    user ||= User.new # guest user (not logged in)
 
-    return unless user.present?
-    can :read, :all
-    can :destroy, Post, user_id: user.id
-    can :destroy, Comment, user_id: user.id
+    if (user.role == 'user')
+      can :read, :all
+      can :manage, Post, author_id: user.id
+      can :manage, Comment, user_id: user.id
+    end
 
-    return unless user.admin?
-
-    can :destroy, :all
-    can :manage, :all
+    if (user.role == 'admin')
+      can :manage, :all
+    end
   end
 end

@@ -10,4 +10,7 @@ Rails.application.routes.draw do
     end
   end
 
+  delete '/users/:user_id/posts/:post_id', to: 'posts#destroy', as: 'delete_post'
+  delete '/users/:user_id/posts/:post_id/comments/:comment_id', to: 'comments#destroy', as: 'delete_comment'
+
 end
