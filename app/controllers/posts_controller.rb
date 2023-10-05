@@ -2,6 +2,8 @@ class PostsController < ApplicationController
   def index
     @users = [User.find(params[:user_id])]
     @posts = @users[0].posts.includes(:comments)
+
+    render json: @posts
   end
 
   def show

@@ -77,3 +77,5 @@ gem 'rubocop', '>= 1.0', '< 2.0'
 gem 'tailwindcss-rails', '~> 2.0'
 
 gem 'devise', '~> 4.9'
+
+gem "active_model_serializers", "~> 0.10.13"

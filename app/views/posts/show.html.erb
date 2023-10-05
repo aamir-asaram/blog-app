@@ -9,7 +9,7 @@
       </div>
     </li>
     <ul class="bg-white -mt-8 rounded-xl ml-8 pl-8 py-8 w-[95%]">
-      <%= link_to '', new_user_post_comment_path(id: current_user, post_id: post) %>
+
       <% unless post.comments.any? %>
         <h2>No Comments</h2>
       <% end %>
@@ -18,6 +18,9 @@
           <span class="font-semibold"><%= User.find(comment.author_id).name %>:</span>
           <span class="ml-2"><%= comment.text %></span>
         </li>
+        <% if can? :manage, comment %>
+        <%= button_to "Delete", delete_comment_path(post_id:, class: "text-red-600 font-semibold" %>
+      <% end %>
       <% end %>
     </ul>
     <button class="px-8 py-2 mt-3 ml-[45%] rounded-2xl border-4 border-transparent hover:border-green-800">
